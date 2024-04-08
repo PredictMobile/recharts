@@ -2,7 +2,6 @@
 *.log
 node_modules
 umd
-lib
 es6
 coverage
 npm-debug.log
@@ -11,7 +10,6 @@ npm-debug.log
 .vscode/
 .justconf/
 types
-build
 build-baseline
 storybook/public/
 .reassure/*

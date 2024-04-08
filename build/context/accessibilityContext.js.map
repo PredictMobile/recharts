@@ -1,0 +1,1 @@
+{"version":3,"file":"accessibilityContext.js","sourceRoot":"","sources":["../../src/context/accessibilityContext.tsx"],"names":[],"mappings":";;;AAAA,iCAAkD;AAElD,MAAM,oBAAoB,GAAG,IAAA,qBAAa,EAAU,IAAI,CAAC,CAAC;AAE7C,QAAA,4BAA4B,GAAG,oBAAoB,CAAC,QAAQ,CAAC;AAEnE,MAAM,qBAAqB,GAAG,GAAG,EAAE,CAAC,IAAA,kBAAU,EAAC,oBAAoB,CAAC,CAAC;AAA/D,QAAA,qBAAqB,yBAA0C"}
