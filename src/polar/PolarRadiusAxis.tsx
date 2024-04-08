@@ -166,7 +166,7 @@ export const PolarRadiusAxisWrapper: FunctionComponent<Props> = defaultsAndInput
           key={`tick-${entry.coordinate}`}
           {...adaptEventsOfChild(props, entry, i)}
         >
-          {renderTickItem(tick, tickProps, tickFormatter ? tickFormatter(entry.value, i) : entry.value)}
+          {renderTickItem(tick, tickProps, tickFormatter ? tickFormatter(entry.value, i, ticks) : entry.value)}
         </Layer>
       );
     });

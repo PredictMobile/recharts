@@ -12,7 +12,7 @@ export type Sign = 0 | 1 | -1;
 function getTicksEnd(
   sign: Sign,
   boundaries: { start: number; end: number },
-  getTickSize: (tick: CartesianTickItem, index: number) => number,
+  getTickSize: (tick: CartesianTickItem, index: number, allTicks: CartesianTickItem[]) => number,
   ticks: CartesianTickItem[],
   minTickGap: number,
 ): CartesianTickItem[] {
@@ -27,7 +27,7 @@ function getTicksEnd(
     let size: number | undefined;
     const getSize = () => {
       if (size === undefined) {
-        size = getTickSize(entry, i);
+        size = getTickSize(entry, i, ticks);
       }
 
       return size;
@@ -57,7 +57,7 @@ function getTicksEnd(
 function getTicksStart(
   sign: Sign,
   boundaries: { start: number; end: number },
-  getTickSize: (tick: CartesianTickItem, index: number) => number,
+  getTickSize: (tick: CartesianTickItem, index: number, allTicks: CartesianTickItem[]) => number,
   ticks: CartesianTickItem[],
   minTickGap: number,
   preserveEnd?: boolean,
@@ -70,7 +70,7 @@ function getTicksStart(
   if (preserveEnd) {
     // Try to guarantee the tail to be displayed
     let tail = ticks[len - 1];
-    const tailSize = getTickSize(tail, len - 1);
+    const tailSize = getTickSize(tail, len - 1, ticks);
     const tailGap = sign * (tail.coordinate + (sign * tailSize) / 2 - end);
     result[len - 1] = tail = {
       ...tail,
@@ -91,7 +91,7 @@ function getTicksStart(
     let size: number | undefined;
     const getSize = () => {
       if (size === undefined) {
-        size = getTickSize(entry, i);
+        size = getTickSize(entry, i, ticks);
       }
 
       return size;
@@ -135,8 +135,8 @@ export function getTicks(props: CartesianAxisProps, fontSize?: string, letterSpa
   const unitSize: Size =
     unit && sizeKey === 'width' ? getStringSize(unit, { fontSize, letterSpacing }) : { width: 0, height: 0 };
 
-  const getTickSize = (content: CartesianTickItem, index: number) => {
-    const value = isFunction(tickFormatter) ? tickFormatter(content.value, index) : content.value;
+  const getTickSize = (content: CartesianTickItem, index: number, allTicks: CartesianTickItem[]) => {
+    const value = isFunction(tickFormatter) ? tickFormatter(content.value, index, allTicks) : content.value;
     // Recharts only supports angles when sizeKey === 'width'
     return sizeKey === 'width'
       ? getAngledTickWidth(getStringSize(value, { fontSize, letterSpacing }), unitSize, angle)

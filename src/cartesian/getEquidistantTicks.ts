@@ -6,7 +6,7 @@ import { Sign } from './getTicks';
 export function getEquidistantTicks(
   sign: Sign,
   boundaries: { start: number; end: number },
-  getTickSize: (tick: CartesianTickItem, index: number) => number,
+  getTickSize: (tick: CartesianTickItem, index: number, allTicks: CartesianTickItem[]) => number,
   ticks: CartesianTickItem[],
   minTickGap: number,
 ): CartesianTickItem[] {
@@ -35,7 +35,7 @@ export function getEquidistantTicks(
     let size: number | undefined;
     const getSize = () => {
       if (size === undefined) {
-        size = getTickSize(entry, i);
+        size = getTickSize(entry, i, ticks);
       }
 
       return size;

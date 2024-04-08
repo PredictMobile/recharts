@@ -155,7 +155,7 @@ export const PolarAngleAxisWrapper: FunctionComponent<Props> = defaultsAndInputs
           {...adaptEventsOfChild(props, entry, i)}
         >
           {tickLine && <line className="recharts-polar-angle-axis-tick-line" {...tickLineProps} {...lineCoord} />}
-          {tick && renderTickItem(tick, tickProps, tickFormatter ? tickFormatter(entry.value, i) : entry.value)}
+          {tick && renderTickItem(tick, tickProps, tickFormatter ? tickFormatter(entry.value, i, ticks) : entry.value)}
         </Layer>
       );
     });
