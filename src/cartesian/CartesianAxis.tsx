@@ -26,7 +26,7 @@ export type Orientation = 'top' | 'bottom' | 'left' | 'right';
 /** A unit to be appended to a value */
 export type Unit = string | number;
 /** The formatter function of tick */
-export type TickFormatter = (value: any, index: number) => string;
+export type TickFormatter = (value: any, index: number, allTicks: any[]) => string;
 
 export interface CartesianAxisProps {
   className?: string;
@@ -307,7 +307,7 @@ export class CartesianAxis extends Component<Props, IState> {
             CartesianAxis.renderTickItem(
               tick,
               tickProps,
-              `${isFunction(tickFormatter) ? tickFormatter(entry.value, i) : entry.value}${unit || ''}`,
+              `${isFunction(tickFormatter) ? tickFormatter(entry.value, i, finalTicks) : entry.value}${unit || ''}`,
             )}
         </Layer>
       );
