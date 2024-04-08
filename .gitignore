@@ -9,7 +9,6 @@ npm-debug.log
 .idea/
 .vscode/
 .justconf/
-types
 build-baseline
 storybook/public/
 .reassure/*
